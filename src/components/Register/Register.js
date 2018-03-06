@@ -1,5 +1,7 @@
 import React from 'react'
 
+const deploy = "https://blooming-harbor-84136.herokuapp.com"
+
 
 class Register extends React.Component {
 
@@ -25,7 +27,7 @@ class Register extends React.Component {
     };
 
     onSubmitRegister = () => {
-        fetch('http://localhost:3000/register', {
+        fetch(`${deploy}/register`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,9 +40,9 @@ class Register extends React.Component {
         })
             .then(response => response.json())
             .then(user => {
-                if(user.id){
-                    this.props.loadUser(user)
-                    this.props.onRouteChange('home')
+                if(user[0].id){
+                    this.props.loadUser(user[0]);
+                    this.props.onRouteChange('home');
                 }
             });
         console.log(this.state);

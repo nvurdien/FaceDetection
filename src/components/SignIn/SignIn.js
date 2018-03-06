@@ -1,5 +1,7 @@
 import React from 'react'
 
+const deploy = "https://blooming-harbor-84136.herokuapp.com"
+
 
 class  SignIn extends React.Component {
 
@@ -20,7 +22,7 @@ class  SignIn extends React.Component {
     };
 
     onSubmitSignIn = () => {
-        fetch('http://localhost:3000/signin', {
+        fetch(`${deploy}/signin`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,11 +35,10 @@ class  SignIn extends React.Component {
             .then(response => response.json())
             .then(user => {
                 if(user.id){
-                    this.props.loadUser(user)
+                    this.props.loadUser(user);
                     this.props.onRouteChange('home')
                 }
             });
-        console.log(this.state);
     };
 
     render(){
